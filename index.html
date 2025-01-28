@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Watermarking Tool</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04.054-.09A13.916 13.916 0 0 0 8 11a4 4 0 1 1 8 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0 0 15.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 0 0 8 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4"/>
+                </svg>
+                Text Watermarking Tool
+            </h1>
+            <p>Create invisible watermarks that survive copy-paste operations</p>
+        </div>
+
+        <!-- Help Button -->
+        <button id="helpButton" class="button secondary help-button">
+            <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"/>
+                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+                <line x1="12" y1="17" x2="12.01" y2="17"/>
+            </svg>
+            Help Guide
+        </button>
+
+        <!-- Help Modal -->
+        <div id="helpModal" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>How to Use Text Watermarking</h2>
+                    <button id="closeModal" class="close-button">
+                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                
+                <div class="modal-body">
+                    <h3>Available Watermarking Options:</h3>
+                    
+                    <div class="help-section">
+                        <h4>1. Word Replacement</h4>
+                        <p>Adds invisible markers after words - like putting clear stickers between words. Perfect when you want to track your text without changing how it looks.</p>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>2. Zero-Width Characters</h4>
+                        <p>Places invisible characters between your letters - like using invisible ink. Nobody can see them, but they're there if you need to prove it's your text.</p>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>3. Special Spaces</h4>
+                        <p>Uses fancy versions of the regular space - like using a special kind of blank ink that looks almost the same as regular spaces.</p>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>4. Combining Characters</h4>
+                        <p>Adds tiny marks to some letters - like adding very subtle dots or lines. You might notice them if you look very closely.</p>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>5. Double Space</h4>
+                        <p>Simply puts two spaces between some words instead of one. The easiest to spot but still looks natural.</p>
+                    </div>
+
+                    <div class = "help-section">
+                        <h4>6. Height Variation</h4>
+                        <p> Make each letter's height slightly different from the others, creating the most natural-looking result.
+                        </p>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>How to Use:</h4>
+                        <ol>
+                            <li>Type or paste your text in the input box</li>
+                            <li>Choose a watermarking option from the dropdown menu</li>
+                            <li>Click "Generate Watermark"</li>
+                            <li>Copy your watermarked text or download it as a file</li>
+                            <li>To verify watermarks, use the verification section below</li>
+                        </ol>
+                    </div>
+
+                    <div class="help-section">
+                        <h4>Output Sections:</h4>
+                        <ul>
+                            <li><strong>Visual Preview:</strong> Shows where watermarks are placed (hover to see details)</li>
+                            <li><strong>Watermarked Text:</strong> Your text with invisible watermarks ready to copy</li>
+                            <li><strong>Technical View:</strong> Shows the technical details of your watermarked text</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="input-section">
+            <h2 class="section-title">Input Text</h2>
+            <textarea id="inputText" placeholder="Enter your text here..."></textarea>
+            <input type="text" id="patternInput" placeholder="Enter your unique pattern (optional)" />
+            
+            <div class="input-group">
+                <select id="transformationType" class="select-input">
+                    <option value="words">Word Replacement</option>
+                    <option value="invisible">Zero-Width Characters</option>
+                    <option value="spacing">Special Spaces</option>
+                    <option value="combining">Combining Characters</option>
+                    <option value="heightVariation">Height Variation</option>
+                    <option value="doubleSpace">Double Space</option>
+                </select>
+            </div>
+            
+            <!-- Add the Batch Processing Section HERE -->
+            <div class="input-group">
+                <input type="number" id="batchCount" placeholder="Enter number of variations" min="1" max="100" />
+                <button class="button primary" id="batchProcessButton">
+                    Generate Batch Watermarks
+                </button>
+            </div>
+            
+            <div class="input-group">
+                <button class="button secondary" id="viewResultsButton" style="display: none;">
+                    View Batch Results
+                </button>
+            </div>
+            <!-- End of Batch Processing Section -->
+            
+            <div class="button-group">
+                <input type="file" id="fileInput" accept=".txt" class="hidden" />
+                <button class="button secondary" id="toggleMode">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+                    </svg>
+                    <span>Toggle Mode: Word</span>
+                </button>
+                <button class="button secondary" id="uploadButton">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+                        <polyline points="13 2 13 9 20 9"/>
+                    </svg>
+                    Upload File
+                </button>
+                <button class="button primary" id="watermarkButton">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72Z"/>
+                        <path d="m14 7 3 3"/>
+                    </svg>
+                    Generate Watermark
+                </button>
+                <button class="button success" id="downloadButton">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                        <polyline points="7 10 12 15 17 10"/>
+                        <line x1="12" y1="15" x2="12" y2="3"/>
+                    </svg>
+                    Download File
+                </button>
+            </div>
+            
+            <div class="loading" id="loadingIndicator"></div>
+        </div>
+
+        
+
+        <!-- Verification Section -->
+        <div class="verification-section">
+            <h2 class="section-title">Watermark Verification</h2>
+            <textarea id="verificationText" placeholder="Paste text here to verify watermarks..."></textarea>
+            <input type="text" id="verificationPattern" placeholder="Enter pattern to verify (optional)" />
+            <button class="button primary" id="verifyButton">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                    <polyline points="22 4 12 14.01 9 11.01"/>
+                </svg>
+                Verify Watermarks
+            </button>
+            <div class="verification-results" id="verificationResults"></div>
+        </div>
+
+        <div class="changes-log" id="changesLog"></div>
+    </div>
+
+    <script src="transformations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

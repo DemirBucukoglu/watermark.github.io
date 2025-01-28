@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Batch Results</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <h1>Batch Watermark Results</h1>
+            <p>Explore all your generated watermarks with highlighted differences.</p>
+        </div>
+
+        <!-- Results Container -->
+        <div id="resultsContainer" class="results-container"></div>
+        
+        <!-- Button Group -->
+        <div class="button-group">
+            <button class="button success" id="downloadPlainTextButton">Download All as Plain Text</button>
+            <button class="button secondary" onclick="window.location.href='index.html'">Go Back</button>
+        </div>
+    </div>
+
+    <script src="results.js"></script>
+</body>
+</html>
