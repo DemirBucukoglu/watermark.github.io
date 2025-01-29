@@ -3,6 +3,12 @@
 
 A web-based application to create invisible watermarks for text. This tool is perfect for embedding unique identifiers into text, allowing you to track and verify your text even after copy-pasting operations.
 
+## AI Usage in this project
+I did not code this website I utilized AI fully and I have prompted this to how it is to AI in a single day, I just wanted to see if my vision was worth doing.
+
+## How did I came up with the idea
+
+2-3 years ago Elon Musk's company emails were leaking out so he send the same email but with different variations to everyone in his company, since each email had a different variation it was easier for him to find the email leaker, so I wanted to make this a website for future use cases for other people
 ---
 
 ## Features
